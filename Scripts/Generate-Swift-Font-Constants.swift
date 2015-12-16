@@ -49,30 +49,35 @@ guard templatePath != nil else {
 	fatalError("Please supply template input path")
 }
 
-// Read the strings file
-var stringsDict: [NSObject: AnyObject]?
-guard let localizedInputPath = inputPath else {
+// Read the font file
+var fontDict: [String: AnyObject]?
+guard let fontInputPath = inputPath else {
 	fatalError("We should have the input path of the font plist file")
 }
-if let localizedData = NSData(contentsOfFile: localizedInputPath),
-	let localizedString = NSString(data:localizedData, encoding:NSUTF8StringEncoding) as String?
+
+if let dict = NSDictionary(contentsOfFile: fontInputPath) as? [String: AnyObject]
 {
-	stringsDict = localizedString.propertyListFromStringsFileFormat()
+	print("fontDict \(dict)")
+	fontDict = dict
 }
 
-// We now have all the strings in stringsDict
-guard let stringsDict = stringsDict else {
+print(fontDict)
+
+// We now have all the fonts in fontDict
+guard let fontDict = fontDict else {
 	fatalError("We should have a dictionary of strings")
 }
 
 // Build case statements
-func buildCaseStatements() -> [(casename: String, description: String)] {
-	var templateReplacements = [(casename: String, description: String)]()
-	for key in stringsDict.keys {
-		let camelCaseKey = camelCase(key as! String)
+func buildCaseStatements() -> [(casename: String, fontname: String, fontsize: String)] {
+	var templateReplacements = [(casename: String, fontname: String, fontsize: String)]()
+	for (key, value) in fontDict {
+		print("key \(key) fontDict: \(value)")
+		let camelCaseKey = camelCase(key)
 		let casename = "case \(camelCaseKey)\n"
-		let description = "case .\(camelCaseKey):\n\t\t\t\t\treturn \"\(key)\""
-		templateReplacements += [(casename, description)]
+		let fontname = "case .\(camelCaseKey):\n\t\t\t\t\treturn \"\(value["Font"] as! String)\""
+		let fontsize = "case .\(camelCaseKey):\n\t\t\t\t\treturn \"\(value["Size"] as! Int)\""
+		templateReplacements += [(casename, fontname, fontsize)]
 	}
 	return templateReplacements
 }
@@ -101,16 +106,30 @@ func caseDeclarations() -> String {
 	return outputString
 }
 
-func caseDescriptions() -> String {
+func caseNameDescriptions() -> String {
 	var outputString = ""
 	for caseStatement in caseStatements
 	{
 		if outputString == "" {
-			outputString = caseStatement.description
+			outputString = caseStatement.fontname
 			continue
 		}
 		
-		outputString += "\n\t\t\t\(caseStatement.description)"
+		outputString += "\n\t\t\t\(caseStatement.fontname)"
+	}
+	return outputString
+}
+
+func caseSizeDescriptions() -> String {
+	var outputString = ""
+	for caseStatement in caseStatements
+	{
+		if outputString == "" {
+			outputString = caseStatement.fontsize
+			continue
+		}
+		
+		outputString += "\n\t\t\t\(caseStatement.fontsize)"
 	}
 	return outputString
 }
@@ -127,8 +146,10 @@ func writeOutputToFile() {
 	{
 		templateString = templateString.stringByReplacingOccurrencesOfString(DECLARATIONS, withString: caseDeclarations())
 		
-		templateString = templateString.stringByReplacingOccurrencesOfString(DESCRIPTIONS, withString: caseDescriptions())
-
+		templateString = templateString.stringByReplacingOccurrencesOfString(NAME_DESCRIPTIONS, withString: caseNameDescriptions())
+		
+		templateString = templateString.stringByReplacingOccurrencesOfString(SIZE_DESCRIPTIONS, withString: caseSizeDescriptions())
+		
 		if let data = templateString.dataUsingEncoding(NSUTF8StringEncoding) {
 			data.writeToFile(outputPath, atomically: true)
 		}
