@@ -9,6 +9,13 @@
 		<key>Size</key>
 		<real>48</real>
 	</dict>
+	<key>Subtitle</key>
+	<dict>
+		<key>Font</key>
+		<string>AmericanTypewriter</string>
+		<key>Size</key>
+		<real>28</real>
+	</dict>
 	<key>Body</key>
 	<dict>
 		<key>Font</key>

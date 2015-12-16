@@ -13,22 +13,17 @@ class ViewController: UIViewController
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var bodyLabel: UILabel!
 	
+	@IBOutlet var typographyLabel: TypographyLabel!
+	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		
 		assert(titleLabel != nil)
+		assert(typographyLabel != nil)
 		assert(bodyLabel != nil)
 		
 		titleLabel.font = Typography.Title.font
 		Typography.Body.style(bodyLabel)
 	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-
-
 }
-

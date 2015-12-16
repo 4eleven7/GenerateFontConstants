@@ -19,27 +19,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4En-hs-vpk">
-                                <rect key="frame" x="40" y="290" width="520" height="21"/>
+                                <rect key="frame" x="20" y="290" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewk-fG-vos">
-                                <rect key="frame" x="40" y="351" width="520" height="21"/>
+                                <rect key="frame" x="20" y="351" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDb-Gh-N1h" customClass="TypographyLabel" customModule="GenerateFontConstantsDemo" customModuleProvider="target">
+                                <rect key="frame" x="20" y="412" width="560" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typography" value="Subtitle"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="rDb-Gh-N1h" firstAttribute="top" secondItem="ewk-fG-vos" secondAttribute="bottom" constant="40" id="0s4-bE-Zxs"/>
                             <constraint firstItem="4En-hs-vpk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="2MT-Ra-5ji"/>
                             <constraint firstItem="4En-hs-vpk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2lA-V9-1rB"/>
                             <constraint firstItem="ewk-fG-vos" firstAttribute="top" secondItem="4En-hs-vpk" secondAttribute="bottom" constant="40" id="Abx-8s-DH9"/>
+                            <constraint firstItem="rDb-Gh-N1h" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="SN0-ap-wDc"/>
+                            <constraint firstAttribute="trailing" secondItem="ewk-fG-vos" secondAttribute="trailing" constant="20" id="Tl5-Wh-gcl"/>
+                            <constraint firstItem="ewk-fG-vos" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="iMI-tc-sfZ"/>
+                            <constraint firstItem="4En-hs-vpk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="jh0-wS-HC4"/>
                             <constraint firstItem="ewk-fG-vos" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="lZ5-VR-Bzc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4En-hs-vpk" secondAttribute="trailing" constant="20" id="luj-bX-ViN"/>
+                            <constraint firstAttribute="trailing" secondItem="rDb-Gh-N1h" secondAttribute="trailing" constant="20" id="mF7-71-Feg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ewk-fG-vos" secondAttribute="trailing" constant="20" id="s7U-Ef-bzk"/>
+                            <constraint firstAttribute="trailing" secondItem="4En-hs-vpk" secondAttribute="trailing" constant="20" id="uMO-iR-mDK"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2MT-Ra-5ji"/>
+                                <exclude reference="luj-bX-ViN"/>
+                                <exclude reference="lZ5-VR-Bzc"/>
+                                <exclude reference="s7U-Ef-bzk"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="bodyLabel" destination="ewk-fG-vos" id="7gJ-tF-52Z"/>

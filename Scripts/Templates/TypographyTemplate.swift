@@ -45,3 +45,41 @@ enum Typography: String
 		}
 	}
 }
+
+@IBDesignable class TypographyLabel: UILabel
+{
+	/**
+	IBDesignable doesn't support dropdowns, so we need to use a string unfortunately.
+	*/
+	@IBInspectable var typography: String = ""
+	
+	override var text: String? {
+		didSet {
+			updateFont()
+		}
+	}
+	
+	override func awakeFromNib()
+	{
+		super.awakeFromNib()
+		
+		updateFont()
+	}
+	
+	override func prepareForInterfaceBuilder()
+	{
+		updateFont()
+	}
+	
+	
+	func updateFont()
+	{
+		guard self.typography != "" && self.text != nil && self.text?.characters.count != 0 else {
+			return
+		}
+		
+		if let typographyType = Typography(rawValue: self.typography) {
+			self.font = typographyType.font
+		}
+	}
+}
