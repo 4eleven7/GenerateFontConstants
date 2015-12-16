@@ -2,11 +2,17 @@
 
 import UIKit
 
+/**
+Usage:
+
+titleLabel.font = Typography.Title.font
+Typography.Title.style(label: titleLabel)
+*/
 enum Typography: String
 {
-	case AppTesting
-	case AppWelcomeMessage
-	
+	case Body
+	case Title
+
 	func style(label: UILabel)
 	{
 		let name = fontName
@@ -29,11 +35,10 @@ enum Typography: String
 	{
 		switch self
 		{
-			case .AppTesting:
-				return "Helvetica-Bold"
-			
-			case .AppWelcomeMessage:
-				return "Helvetica"
+			case .Body:
+					return "Helvetica"
+			case .Title:
+					return "Helvetica-Bold"
 		}
 	}
 	
@@ -41,11 +46,10 @@ enum Typography: String
 	{
 		switch self
 		{
-			case .AppTesting:
-				return 48.0
-			
-			case .AppWelcomeMessage:
-				return 24.0
+			case .Body:
+					return "18"
+			case .Title:
+					return "48"
 		}
 	}
 }

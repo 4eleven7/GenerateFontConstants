@@ -11,7 +11,6 @@ Typography.Title.style(label: titleLabel)
 enum Typography: String
 {
 	// %CASE_DECLARATIONS%
-	
 	func style(label: UILabel)
 	{
 		let name = fontName
@@ -24,10 +23,10 @@ enum Typography: String
 	
 	var font: UIFont?
 	{
-			let name = fontName
-			let size = fontSize
-			
-			return UIFont(name: name, size: size)
+		let name = fontName
+		let size = fontSize
+		
+		return UIFont(name: name, size: size)
 	}
 	
 	private var fontName: String
