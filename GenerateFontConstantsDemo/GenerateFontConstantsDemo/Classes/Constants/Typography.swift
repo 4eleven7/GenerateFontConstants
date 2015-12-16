@@ -47,9 +47,9 @@ enum Typography: String
 		switch self
 		{
 			case .Body:
-					return "18"
+					return 18
 			case .Title:
-					return "48"
+					return 48
 		}
 	}
 }

@@ -76,7 +76,7 @@ func buildCaseStatements() -> [(casename: String, fontname: String, fontsize: St
 		let camelCaseKey = camelCase(key)
 		let casename = "case \(camelCaseKey)\n"
 		let fontname = "case .\(camelCaseKey):\n\t\t\t\t\treturn \"\(value["Font"] as! String)\""
-		let fontsize = "case .\(camelCaseKey):\n\t\t\t\t\treturn \"\(value["Size"] as! Int)\""
+		let fontsize = "case .\(camelCaseKey):\n\t\t\t\t\treturn \(value["Size"] as! Int)"
 		templateReplacements += [(casename, fontname, fontsize)]
 	}
 	return templateReplacements
